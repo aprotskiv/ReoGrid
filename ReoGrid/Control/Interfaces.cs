@@ -134,7 +134,12 @@ namespace unvell.ReoGrid.Main
 
 	internal interface IVisualWorkbook : IScrollableWorksheetContainer
 	{
-		Worksheet CurrentWorksheet { get; set; }
+		Worksheet
+#if NET48
+#else
+    ?
+#endif
+              CurrentWorksheet { get; set; }
 	}
 
 	internal interface IScrollableWorksheetContainer

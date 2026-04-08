@@ -410,15 +410,26 @@ namespace unvell.ReoGrid
 		/// </summary>
 		public event EventHandler WorkbookSaved;
 
-		#region Worksheet Management
+    #region Worksheet Management
 
-		private Worksheet currentWorksheet;
 
-		/// <summary>
-		/// Get or set the current worksheet
-		/// </summary>
-		public Worksheet CurrentWorksheet
-		{
+    public Worksheet
+#if NET48
+#else
+    ?
+#endif
+            currentWorksheet;
+
+    /// <summary>
+    /// Get or set the current worksheet
+    /// </summary>
+    public Worksheet
+#if NET48
+#else
+    ?
+#endif
+          CurrentWorksheet
+    {
 			get
 			{
 				return this.currentWorksheet;
