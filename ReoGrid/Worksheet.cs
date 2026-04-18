@@ -1834,13 +1834,15 @@ namespace unvell.ReoGrid
 						}
 						break;
 
-					case KeyCode.Delete:
+          case KeyCode.Shift | KeyCode.Delete:
+          case KeyCode.Control | KeyCode.Delete:
+          case KeyCode.Delete:
 						if (this.controlAdapter != null && !HasSettings(WorksheetSettings.Edit_Readonly))
 						{
 							var actionSupportedControl = this.controlAdapter.ControlInstance as IActionControl;
 							if (actionSupportedControl != null)
 							{
-								actionSupportedControl.DoAction(this, new RemoveRangeDataAction(this.selectionRange));
+								actionSupportedControl.DoAction(this, new RemoveRangeDataAction(this.selectionRange, keyData));
 							}
 						}
 						break;

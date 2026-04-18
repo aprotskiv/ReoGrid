@@ -15,6 +15,9 @@
  * 
  ****************************************************************************/
 
+using System.Windows.Forms;
+using unvell.ReoGrid.Interaction;
+
 namespace unvell.ReoGrid.Actions
 {
 	/// <summary>
@@ -24,14 +27,24 @@ namespace unvell.ReoGrid.Actions
 	{
 		private object[,] backupData;
 
-		/// <summary>
-		/// Create action to remove data from specified range.
-		/// </summary>
-		/// <param name="range">data from cells in this range will be removed.</param>
-		public RemoveRangeDataAction(RangePosition range)
+    /// <summary>
+    /// Pressed keys that triggered <see cref="RemoveRangeDataAction"/>
+    /// </summary>
+    /// <remarks>
+    /// Allows to customize <see cref="RemoveRangeDataAction"/>'s behavior
+    /// </remarks>
+    public KeyCode? KeyData { get; }
+
+    /// <summary>
+    /// Create action to remove data from specified range.
+    /// </summary>
+    /// <param name="range">data from cells in this range will be removed.</param>
+    /// <param name="keyData">pressed keys that triggered <see cref="RemoveRangeDataAction"/></param>
+    public RemoveRangeDataAction(RangePosition range, KeyCode? keyData = null)
 			: base(range)
 		{
-		}
+      this.KeyData = keyData;
+    }
 
 		/// <summary>
 		/// Create a copy from this action in order to apply the operation to another range.
@@ -40,7 +53,7 @@ namespace unvell.ReoGrid.Actions
 		/// <returns>New action instance copied from this action.</returns>
 		public override WorksheetReusableAction Clone(RangePosition range)
 		{
-			return new RemoveRangeDataAction(range);
+			return new RemoveRangeDataAction(range, this.KeyData);
 		}
 
 		/// <summary>
