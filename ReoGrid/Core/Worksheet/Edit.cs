@@ -397,7 +397,8 @@ namespace unvell.ReoGrid
 				{
 					EndReason = reason,
 					NewData = data,
-				};
+          Unchanged = object.Equals(data, backupData)
+        };
 
 				AfterCellEdit(this, arg);
 				data = arg.NewData;

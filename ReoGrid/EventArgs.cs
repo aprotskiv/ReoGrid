@@ -501,6 +501,11 @@ namespace unvell.ReoGrid.Events
 		/// formatter for the new data.
 		/// </summary>
 		public CellDataFormatFlag? DataFormat { get; set; }
+    
+    /// <summary>
+    /// Indicates whether cell text representation has not been changed
+    /// </summary>
+    public bool Unchanged { get; set; }
 
 		/// <summary>
 		/// Create instance for CellAfterEditEventArgs
