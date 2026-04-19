@@ -24,7 +24,7 @@ using System.Linq;
 
 namespace unvell.Common
 {
-	internal sealed class ActionManager
+	public sealed class ActionManager
 	{
 		private static readonly string LOGKEY = "actionmanager";
 

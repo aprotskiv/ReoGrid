@@ -115,7 +115,7 @@ namespace unvell.ReoGrid.Main
 		void Load(System.IO.Stream stream, FileFormat format = FileFormat._Auto, System.Text.Encoding encoding = null);
 	}
 
-	internal interface IActionControl
+	public interface IActionControl
 	{
 		//unvell.Common.ActionManager ActionManager { get; }
 		void DoAction(Worksheet sheet, BaseWorksheetAction action);
@@ -132,9 +132,18 @@ namespace unvell.ReoGrid.Main
 		void ClearActionHistoryForWorksheet(Worksheet sheet);
 	}
 
-	internal interface IVisualWorkbook : IScrollableWorksheetContainer
-	{
-		Worksheet CurrentWorksheet { get; set; }
+  public interface IActionController : IActionControl
+  {
+    event EventHandler<WorkbookActionEventArgs> BeforeActionPerform;
+  }
+
+  public interface ICurrentWorksheetProvider
+  {
+    Worksheet CurrentWorksheet { get; set; }
+  }
+
+  internal interface IVisualWorkbook : IScrollableWorksheetContainer, ICurrentWorksheetProvider
+  {		
 	}
 
 	internal interface IScrollableWorksheetContainer
