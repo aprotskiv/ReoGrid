@@ -44,7 +44,7 @@ namespace unvell.ReoGrid.Views
 	/// <summary>
 	/// Interface for freezable ViewportController
 	/// </summary>
-	internal interface IFreezableViewportController
+	public interface IFreezableViewportController
 	{
 		/// <summary>
 		/// Freeze to specified cell and position.

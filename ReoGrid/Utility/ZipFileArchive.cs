@@ -29,7 +29,7 @@ using System.Text;
 
 namespace unvell.ReoGrid.Utility
 {
-    internal interface IZipArchive
+    public interface IZipArchive
     {
         IZipEntry GetFile(string path);
         IZipEntry AddFile(string path, Stream stream = null);
@@ -38,7 +38,7 @@ namespace unvell.ReoGrid.Utility
         void Close();
     }
 
-    internal interface IZipEntry
+    public interface IZipEntry
     {
         Stream GetStream();
         Stream CreateStream();

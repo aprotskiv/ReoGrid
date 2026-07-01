@@ -43,7 +43,7 @@ namespace unvell.ReoGrid.Views
 	/// A view is a visual region which can be independent rendered on ReoGrid control.
 	/// A view can contains multiple child views.
 	/// </summary>
-	interface IView : IUserVisual
+	public interface IView : IUserVisual
 	{
 		IViewportController ViewportController { get; set; }
 

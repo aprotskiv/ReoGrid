@@ -18,6 +18,8 @@
 
 using unvell.ReoGrid.Views;
 using unvell.ReoGrid.Graphics;
+using System;
+
 
 #if WINFORM || ANDROID
 using RGFloat = System.Single;
@@ -27,135 +29,153 @@ using RGFloat = System.Double;
 
 namespace unvell.ReoGrid.Rendering
 {
-	/// <summary>
-	/// Drawing Mode for render grid control
-	/// </summary>
-	public enum DrawMode
-	{
-		/// <summary>
-		/// View on screen
-		/// </summary>
-		View,
+  /// <summary>
+  /// Drawing Mode for render grid control
+  /// </summary>
+  public enum DrawMode
+  {
+    /// <summary>
+    /// View on screen
+    /// </summary>
+    View,
 
-		/// <summary>
-		/// Print preview 
-		/// </summary>
-		Preview,
+    /// <summary>
+    /// Print preview 
+    /// </summary>
+    Preview,
 
-		/// <summary>
-		/// Print
-		/// </summary>
-		Print,
-	}
+    /// <summary>
+    /// Print
+    /// </summary>
+    Print,
+  }
 
-	#region DrawingContext
-	/// <summary>
-	/// Represents the platform no-associated drawing context.
-	/// </summary>
-	public abstract class DrawingContext
-	{
-		/// <summary>
-		/// Get current instance of worksheet.
-		/// </summary>
-		public Worksheet Worksheet { get; private set; }
+  #region DrawingContext
+  /// <summary>
+  /// Represents the platform no-associated drawing context.
+  /// </summary>
+  public abstract class DrawingContext
+  {
+    /// <summary>
+    /// Get current instance of worksheet.
+    /// </summary>
+    public Worksheet Worksheet { get; private set; }
 
-		/// <summary>
-		/// Platform independent drawing context.
-		/// </summary>
-		public IGraphics Graphics { get; internal set; }
+    /// <summary>
+    /// Platform independent drawing context.
+    /// </summary>
+    public IGraphics Graphics { get; internal set; }
 
-		internal IRenderer Renderer { get { return (IRenderer)Graphics; } }
+    internal IRenderer Renderer { get { return (IRenderer)Graphics; } }
 
-		internal IView CurrentView { get; set; }
+    internal IView CurrentView { get; set; }
 
-		/// <summary>
-		/// Draw mode that decides what kind of content will be drawn during this drawing event.
-		/// </summary>
-		public DrawMode DrawMode { get; private set; }
+    /// <summary>
+    /// Draw mode that decides what kind of content will be drawn during this drawing event.
+    /// </summary>
+    public DrawMode DrawMode { get; private set; }
 
-		//internal DrawingContext(Worksheet worksheet, DrawMode drawMode)
-		//	: this(worksheet, drawMode, null)
-		//{
-		//}
+    //internal DrawingContext(Worksheet worksheet, DrawMode drawMode)
+    //	: this(worksheet, drawMode, null)
+    //{
+    //}
 
-		internal DrawingContext(Worksheet worksheet, DrawMode drawMode, IRenderer r)
-		{
-			this.Worksheet = worksheet;
-			this.DrawMode = drawMode;
-			this.Graphics = r;
-		}
-	}
-	#endregion // DrawingContext
+    internal DrawingContext(Worksheet worksheet, DrawMode drawMode, IRenderer r)
+    {
+      this.Worksheet = worksheet;
+      this.DrawMode = drawMode;
+      this.Graphics = r;
+    }
+  }
+  #endregion // DrawingContext
 
-	#region CellDrawingContext
-	/// <summary>
-	/// Drawing context for rendering cells.
-	/// </summary>
-	public sealed class CellDrawingContext : DrawingContext
-	{
-#region Cell Methods
+  #region CellDrawingContext
+  /// <summary>
+  /// Drawing context for rendering cells.
+  /// </summary>
+  public sealed class CellDrawingContext : DrawingContext
+  {
+    #region Cell Methods
 
-		/// <summary>
-		/// Cell instance if enter a cell drawing event
-		/// </summary>
-		public Cell Cell { get; set; }
+    /// <summary>
+    /// Cell instance if enter a cell drawing event
+    /// </summary>
+    public Cell Cell { get; set; }
 
-		internal bool AllowCellClip { get; set; }
-		
-		internal bool FullCellClip { get; set; }
+    internal bool AllowCellClip { get; set; }
 
-		/// <summary>
-		/// Recall core renderer to draw cell text
-		/// </summary>
-		public void DrawCellText()
-		{
-			if (CurrentView is CellsViewport
-				&& Cell != null
-				&& !string.IsNullOrEmpty(Cell.DisplayText))
-			{
-				var view = ((CellsViewport)CurrentView);
+    internal bool FullCellClip { get; set; }
 
-				var g = this.Graphics;
+    /// <summary>
+    /// Recall core renderer to draw cell text
+    /// </summary>
+    public void DrawCellText()
+    {
+      if (CurrentView is CellsViewport
+        && Cell != null
+        && !string.IsNullOrEmpty(Cell.DisplayText))
+      {
+        var view = ((CellsViewport)CurrentView);
 
-				RGFloat scaleFactor = Worksheet.renderScaleFactor;
+        var g = this.Graphics;
 
-				g.PopTransform();
+        RGFloat scaleFactor = Worksheet.renderScaleFactor;
 
-				view.DrawCellText(this, Cell);
+        g.PopTransform();
 
-				g.PushTransform();
-				if (scaleFactor != 1f) g.ScaleTransform(scaleFactor, scaleFactor);
-				g.TranslateTransform(this.Cell.Left, this.Cell.Top);
-			}
-		}
+        view.DrawCellText(this, Cell);
 
-		/// <summary>
-		/// Recall core renderer to draw cell background.
-		/// </summary>
-		public void DrawCellBackground()
-		{
-			if (this.CurrentView is CellsViewport 
-				&& Cell != null)
-			{
-				var currentView = (CellsViewport)this.CurrentView;
+        g.PushTransform();
+        if (scaleFactor != 1f) g.ScaleTransform(scaleFactor, scaleFactor);
+        g.TranslateTransform(this.Cell.Left, this.Cell.Top);
+      }
+    }
 
-				currentView.DrawCellBackground(this, Cell.InternalRow, Cell.InternalCol, Cell, true);
-			}
-		}
+    /// <summary>
+    /// Recall core renderer to draw cell background.
+    /// </summary>
+    public void DrawCellBackground()
+    {
+      if (this.CurrentView is CellsViewport
+        && Cell != null)
+      {
+        var currentView = (CellsViewport)this.CurrentView;
 
-#endregion // Cell Methods
+        currentView.DrawCellBackground(this, Cell.InternalRow, Cell.InternalCol, Cell, true);
+      }
+    }
 
-		internal CellDrawingContext(Worksheet worksheet, DrawMode drawMode)
-			: this(worksheet, drawMode, null)
-		{
-		}
+    public Rectangle? GetRectangle()
+    {
+      if (this.CurrentView is CellsViewport currentView && Cell != null)
+      {
+        var startPos = new unvell.ReoGrid.CellPosition(Cell.Row, Cell.Column);
 
-		internal CellDrawingContext(Worksheet worksheet, DrawMode drawMode, IRenderer r)
-			: base(worksheet, drawMode, r)
-		{
-			this.AllowCellClip = !worksheet.HasSettings(WorksheetSettings.View_AllowCellTextOverflow);
-		}
-	}
-	#endregion // CellDrawingContext
+        Rectangle rect = Cell == null
+          ? unvell.ReoGrid.Views.CellsViewport.GetScaledAndClippedRangeRect(currentView, startPos, startPos, 1)
+          : unvell.ReoGrid.Views.CellsViewport.GetScaledAndClippedRangeRect(currentView, startPos,
+              new CellPosition(Cell.Row + Cell.GetRowspan() - 1, Cell.Column + Cell.GetColspan() - 1), 1
+          );
+
+        return rect;
+      }
+
+      return null;
+    }
+
+    #endregion // Cell Methods
+
+    internal CellDrawingContext(Worksheet worksheet, DrawMode drawMode)
+      : this(worksheet, drawMode, null)
+    {
+    }
+
+    internal CellDrawingContext(Worksheet worksheet, DrawMode drawMode, IRenderer r)
+      : base(worksheet, drawMode, r)
+    {
+      this.AllowCellClip = !worksheet.HasSettings(WorksheetSettings.View_AllowCellTextOverflow);
+    }
+  }
+  #endregion // CellDrawingContext
 
 }

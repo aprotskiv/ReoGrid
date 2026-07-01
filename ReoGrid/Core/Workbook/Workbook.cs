@@ -54,7 +54,7 @@ using ReoGridControl = unvell.ReoGrid.ReoGridView;
 
 namespace unvell.ReoGrid
 {
-	internal partial class Workbook : IWorkbook
+	public partial class Workbook : IWorkbook
 #if (WINFORM || WPF) && PRINT
 		, IPrintableContainer
 #endif // (WINFORM || WPF) && PRINT
@@ -63,7 +63,18 @@ namespace unvell.ReoGrid
 
 		internal IControlAdapter controlAdapter;
 
-		public ReoGridControl ControlInstance { get { return (ReoGridControl)this.controlAdapter.ControlInstance; } }
+    public void SetControlAdapter(IControlAdapter adapter)
+    {
+      if (adapter != null)
+      {
+        this.controlAdapter = adapter;
+
+        this.AttachSheetTabControl(this.controlAdapter.SheetTabControl);
+      }
+    }
+
+
+    public ReoGridControl ControlInstance { get { return (ReoGridControl)this.controlAdapter.ControlInstance; } }
 
 		#region Readonly
 		private bool isReadonly = false;
@@ -98,12 +109,7 @@ namespace unvell.ReoGrid
 			Debug.WriteLine("start creating workbook...");
 #endif // DEBUG
 
-			if (adapter != null)
-			{
-				this.controlAdapter = adapter;
-
-				this.AttachSheetTabControl(this.controlAdapter.SheetTabControl);
-			}
+      SetControlAdapter(adapter);
 
 			// default control styles
 			//SetControlStyle(ControlAppearanceStyle.DefaultControlStyle);

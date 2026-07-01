@@ -73,7 +73,7 @@ namespace unvell.ReoGrid.Drawing.Text
 		Subscript = 0x20,
 	}
 
-	internal interface IFont
+	public interface IFont
 	{
 		string Name { get; set; }
 		RGFloat Size { get; set; }

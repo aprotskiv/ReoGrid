@@ -57,7 +57,7 @@ using unvell.ReoGrid.Graphics;
 
 namespace unvell.Common
 {
-	internal sealed class ResourcePoolManager : IDisposable
+	public sealed class ResourcePoolManager : IDisposable
 	{
 		//private static readonly ResourcePoolManager instance = new ResourcePoolManager();
 		//public static ResourcePoolManager Instance { get { return instance; } }

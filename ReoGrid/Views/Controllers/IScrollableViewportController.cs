@@ -41,7 +41,7 @@ using unvell.ReoGrid.Main;
 
 namespace unvell.ReoGrid.Views
 {
-	internal interface IScrollableViewportController
+	public interface IScrollableViewportController
 	{
 		void HorizontalScroll(RGIntDouble value);
 

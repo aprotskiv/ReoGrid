@@ -283,7 +283,7 @@ namespace unvell.ReoGrid
 				this.verScrollbar.Height = this.RenderSize.Height;
 			}
 
-			this.currentWorksheet.UpdateViewportControllBounds();
+			this.currentWorksheet?.UpdateViewportControllBounds();
 		}
 
 		private void ShowSheetTabControl()

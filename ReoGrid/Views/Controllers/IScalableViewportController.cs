@@ -41,7 +41,7 @@ using unvell.ReoGrid.Main;
 
 namespace unvell.ReoGrid.Views
 {
-	internal interface IScalableViewportController
+	public interface IScalableViewportController
 	{
 		RGFloat ScaleFactor { get; set; }
 	}

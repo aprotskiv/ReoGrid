@@ -99,7 +99,7 @@ namespace unvell.ReoGrid.Interaction
 		void OnDeselect();
 	}
 
-	internal interface IThumbVisualObject
+	public interface IThumbVisualObject
 	{
 		IEnumerable<ResizeThumb> ThumbPoints { get; }
 	}

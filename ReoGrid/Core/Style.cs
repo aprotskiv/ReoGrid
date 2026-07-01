@@ -61,7 +61,7 @@ namespace unvell.ReoGrid.Core
 		Own,
 	}
 
-	enum UpdateFontReason
+	public enum UpdateFontReason
 	{
 		FontChanged,
 		ScaleChanged,

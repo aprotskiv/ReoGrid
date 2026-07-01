@@ -28,7 +28,7 @@ namespace unvell.ReoGrid.Core
 	/// <summary>
 	/// Absolute address interface reference to a cell or range on spreadsheet
 	/// </summary>
-	internal interface ISheetAddress
+	public interface ISheetAddress
 	{
 		/// <summary>
 		/// Convert into address identifier.
@@ -52,7 +52,7 @@ namespace unvell.ReoGrid.Core
 	/// <summary>
 	/// Interface that represents a range of row on worksheet.
 	/// </summary>
-	internal interface IRowRange
+	public interface IRowRange
 	{
 		/// <summary>
 		/// Get or set the number of row.
@@ -73,7 +73,7 @@ namespace unvell.ReoGrid.Core
 	/// <summary>
 	/// Interface to represents a range of column on worksheet.
 	/// </summary>
-	internal interface IColumnRange
+	public interface IColumnRange
 	{
 		/// <summary>
 		/// Get or set the number of col.
@@ -94,7 +94,7 @@ namespace unvell.ReoGrid.Core
 	/// <summary>
 	/// Interface that represents a range location on worksheet. (Combine from IRowRange and IColumnRange)
 	/// </summary>
-	internal interface IRange : IRowRange, IColumnRange { }
+	public interface IRange : IRowRange, IColumnRange { }
 
 	static class PositionAbsoluteBits
 	{

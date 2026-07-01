@@ -263,7 +263,7 @@ namespace unvell.ReoGrid
 		#endregion // Internal Exceptions
 	}
 
-	//internal interface IScreenWorkbook : IWorkbook
+	//public interface IScreenWorkbook : IWorkbook
 	//{
 	//	#region Control Relative
 	//	/// <summary>

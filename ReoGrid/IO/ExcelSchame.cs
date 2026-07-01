@@ -1686,7 +1686,7 @@ namespace unvell.ReoGrid.IO.OpenXML.Schema
 		public DataLabels labels;
 	}
 
-	internal interface IChartSerial
+	public interface IChartSerial
 	{
 		ChartText ChartLabel { get; }
 		ChartDataValues Values { get; }

@@ -286,7 +286,7 @@ namespace unvell.Common
 		void Redo();
 	}
 
-	internal interface ISerialUndoAction : IUndoableAction
+	public interface ISerialUndoAction : IUndoableAction
 	{
 	}
 

@@ -25,7 +25,7 @@ using System.Text;
 
 namespace unvell.ReoGrid.Print
 {
-	internal interface IPrintSession
+	public interface IPrintSession
 #if WINFORM
 		: IDisposable
 #endif // WINFORM

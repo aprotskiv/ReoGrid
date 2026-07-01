@@ -28,7 +28,7 @@ using unvell.ReoGrid.Views;
 
 namespace unvell.ReoGrid.Drawing
 {
-	internal interface IDrawingCanvas : IDrawingContainer
+	public interface IDrawingCanvas : IDrawingContainer
 	{
 
 	}

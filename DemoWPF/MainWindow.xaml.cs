@@ -570,7 +570,7 @@ namespace unvell.ReoGrid.WPFDemo
 
 		private void Sheet_Append_100_Rows_Click(object sender, RoutedEventArgs e)
 		{
-			grid.DoAction(new Actions.InsertRowsAction(grid.CurrentWorksheet.Rows, 100));
+			grid.DoAction(grid.CurrentWorksheet, new Actions.InsertRowsAction(grid.CurrentWorksheet.Rows, 100));
 		}
 
 		#endregion Menu - Sheet
