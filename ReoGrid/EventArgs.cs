@@ -994,10 +994,20 @@ namespace unvell.ReoGrid.Events
 		public BeforeRangeOperationEventArgs(RangePosition range) : base(range) { }
 	}
 
-	/// <summary>
-	/// Event argument for copying or moving range by dragging mouse
-	/// </summary>
-	public class CopyOrMoveRangeEventArgs : EventArgs
+  public class BeforePasteRangeEventArgs : BeforeRangeOperationEventArgs
+  {
+    public BeforePasteRangeEventArgs(RangePosition range, object data) : base(range)
+    {
+      this.Data = data;
+    }
+
+    public object Data { get; }
+  }
+
+  /// <summary>
+  /// Event argument for copying or moving range by dragging mouse
+  /// </summary>
+  public class CopyOrMoveRangeEventArgs : EventArgs
 	{
 		/// <summary>
 		/// Source range

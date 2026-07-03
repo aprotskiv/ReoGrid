@@ -140,12 +140,10 @@ namespace unvell.ReoGrid
 		}
 
 		private CellArray cells;
-#if DEBUG
-		public
-#else
-		internal
-#endif
-		CellArray Cells
+    /// <summary>
+    /// 
+    /// </summary>
+		public CellArray Cells
 		{
 			get { return cells; }
 			set { cells = value; }

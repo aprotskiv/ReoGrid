@@ -34,15 +34,17 @@ using unvell.ReoGrid.Rendering;
 
 namespace unvell.ReoGrid.CellTypes
 {
-	/// <summary>
-	/// Representation for an image of cell body
-	/// </summary>
-	public class ImageCell : CellBody
+  /// <summary>
+  /// Representation for an image of cell body
+  /// </summary>  
+  [Serializable]
+  public class ImageCell : CellBody
 	{
-		/// <summary>
-		/// Get or set the image to be displayed in cell
-		/// </summary>
-		public RGImage Image { get; set; }
+    /// <summary>
+    /// Get or set the image to be displayed in cell
+    /// </summary>
+    [NonSerialized]
+    public RGImage Image;
 
 		#region Constructor
 		/// <summary>
