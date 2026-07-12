@@ -24,10 +24,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<!-- renamed WPFDebug;WPFRelease -->
-    <Configurations>Debug;Release</Configurations>
-	<ReoGridConfiguration Condition="'$(Configuration)'=='Debug'">WPFDebug</ReoGridConfiguration>
-	<ReoGridConfiguration Condition="'$(Configuration)'=='Release'">WPFRelease</ReoGridConfiguration>
+    <Configurations>Debug;Release;WPFDebug;WPFRelease</Configurations>
   </PropertyGroup>
 	<PropertyGroup>
 		<Authors>Jingwood</Authors>
@@ -49,11 +46,11 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	
-  <PropertyGroup Condition="'$(ReoGridConfiguration)|$(Platform)'=='WPFDebug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFDebug|AnyCPU' OR '$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;WPF;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;</DefineConstants>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(ReoGridConfiguration)|$(Platform)'=='WPFRelease|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFRelease|AnyCPU' OR '$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;WPF;FORMULA;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;</DefineConstants>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
