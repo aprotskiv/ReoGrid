@@ -24,7 +24,10 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>WPFDebug;WPFRelease</Configurations>
+	<!-- renamed WPFDebug;WPFRelease -->
+    <Configurations>Debug;Release</Configurations>
+	<ReoGridConfiguration Condition="'$(Configuration)'=='Debug'">WPFDebug</ReoGridConfiguration>
+	<ReoGridConfiguration Condition="'$(Configuration)'=='Release'">WPFRelease</ReoGridConfiguration>
   </PropertyGroup>
 	<PropertyGroup>
 		<Authors>Jingwood</Authors>
@@ -46,11 +49,11 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFDebug|AnyCPU'">
+  <PropertyGroup Condition="'$(ReoGridConfiguration)|$(Platform)'=='WPFDebug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;WPF;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;</DefineConstants>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFRelease|AnyCPU'">
+  <PropertyGroup Condition="'$(ReoGridConfiguration)|$(Platform)'=='WPFRelease|AnyCPU'">
     <DefineConstants>TRACE;WPF;FORMULA;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;</DefineConstants>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
@@ -58,7 +61,7 @@
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='WPFRelease|netcoreapp3.0|AnyCPU'">
+  <PropertyGroup Condition="'$(ReoGridConfiguration)|$(TargetFramework)|$(Platform)'=='WPFRelease|netcoreapp3.0|AnyCPU'">
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
