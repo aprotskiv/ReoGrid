@@ -97,7 +97,7 @@ namespace unvell.ReoGrid
 		VBorder = 0x20,
 	}
 
-	internal enum ExPartialGridCopyFlag
+	public enum ExPartialGridCopyFlag
 	{
 		None,
 
@@ -360,7 +360,7 @@ namespace unvell.ReoGrid
 			return GetPartialGrid(range, PartialGridCopyFlag.All, ExPartialGridCopyFlag.BorderOutsideOwner);
 		}
 
-		internal PartialGrid GetPartialGrid(RangePosition range, PartialGridCopyFlag flag, ExPartialGridCopyFlag exFlag,
+		public PartialGrid GetPartialGrid(RangePosition range, PartialGridCopyFlag flag, ExPartialGridCopyFlag exFlag,
 			bool checkIntersectedRange = false)
 		{
 			range = FixRange(range);

@@ -208,6 +208,10 @@ namespace unvell.ReoGrid
 		/// Determine whether or not this workbook is read-only
 		/// </summary>
 		bool Readonly { get; set; }
+    
+    IPartialGridFactory PartialGridFactory { get; set; }
+
+    IDataActionFactory DataActionFactory { get; set; }
 
 		/// <summary>
 		/// Reset this workbook (Clear all worksheets and put one new)

@@ -268,6 +268,10 @@ namespace unvell.ReoGrid
 
     #region Workbook & Worksheet
 
+    public IDataActionFactory DataActionFactory { get; set; } = new DefaultDataActionFactory();
+
+    public IPartialGridFactory PartialGridFactory { get; set; } = new DefaultPartialGridFactory();
+
     private Workbook workbook;
 
     #region Save & Load

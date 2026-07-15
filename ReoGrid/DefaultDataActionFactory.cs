@@ -1,0 +1,61 @@
+﻿using unvell.ReoGrid.Actions;
+using unvell.ReoGrid.Interaction;
+
+namespace unvell.ReoGrid
+{
+  public interface IDataActionFactory
+  {
+    CutRangeAction CutRangeAction(RangePosition range, PartialGrid partialGrid);
+
+    /// <summary>
+    /// Create action to remove data from specified range.
+    /// </summary>
+    /// <param name="range">data from cells in this range will be removed.</param>
+    /// <param name="keyData">pressed keys that triggered <see cref="RemoveRangeDataAction"/></param>
+    RemoveRangeDataAction RemoveRangeDataAction(RangePosition range, KeyCode? keyData = null);
+
+    /// <summary>
+		/// Create action to set partial grid.
+		/// </summary>
+		/// <param name="range">target range to set partial grid.</param>
+		/// <param name="data">partial grid to be set.</param>
+    WorksheetReusableAction SetPartialGridAction(RangePosition range, PartialGrid data);
+
+    /// <summary>
+    /// Create action to set data into specified range of spreadsheet.
+    /// </summary>
+    /// <param name="range">range to set specified data.</param>
+    /// <param name="data">data to be set.</param>
+    WorksheetReusableAction SetRangeDataAction(RangePosition range, object[,] data);
+  }
+
+  /// <summary>
+  /// Creates <see cref="WorksheetReusableAction"/> instances
+  /// </summary>
+  public class DefaultDataActionFactory : IDataActionFactory
+  {
+    /// <inheritdoc/>
+    public CutRangeAction CutRangeAction(RangePosition range, PartialGrid partialGrid)
+    {
+      return new CutRangeAction(range, partialGrid);
+    }
+
+    /// <inheritdoc/>
+    public RemoveRangeDataAction RemoveRangeDataAction(RangePosition range, KeyCode? keyData = null)
+    {
+      return new RemoveRangeDataAction(range, keyData);
+    }
+
+    /// <inheritdoc/>
+    public WorksheetReusableAction SetPartialGridAction(RangePosition range, PartialGrid data)
+    {
+      return new SetPartialGridAction(range, data);
+    }
+    
+    /// <inheritdoc/>
+    public WorksheetReusableAction SetRangeDataAction(RangePosition range, object[,] data)
+    {
+      return new SetRangeDataAction(range, data);
+    }
+  }
+}

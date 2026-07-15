@@ -97,11 +97,16 @@ namespace unvell.ReoGrid
 		}
 		#endregion // Readonly
 
-		/// <summary>
-		/// Create workbook instance
-		/// </summary>
-		/// <param name="adapter">Control instance adapter</param>
-		public Workbook(IControlAdapter adapter)
+
+    public IDataActionFactory DataActionFactory { get; set; } = new DefaultDataActionFactory();
+
+    public IPartialGridFactory PartialGridFactory { get; set; } = new DefaultPartialGridFactory();
+
+    /// <summary>
+    /// Create workbook instance
+    /// </summary>
+    /// <param name="adapter">Control instance adapter</param>
+    public Workbook(IControlAdapter adapter)
 		{
 
 #if DEBUG

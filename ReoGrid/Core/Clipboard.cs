@@ -220,8 +220,9 @@ namespace unvell.ReoGrid
 
 #if WINFORM || WPF
           DataObject data = new DataObject();
-          data.SetData(ClipBoardDataFormatIdentify,
-            GetPartialGrid(currentCopingRange, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None, true));
+          data.SetData(ClipBoardDataFormatIdentify, this.Workbook.PartialGridFactory.
+            GetPartialGrid(this, currentCopingRange, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None, true)
+          );
 
           string text = StringifyRange(currentCopingRange);
           if (!string.IsNullOrEmpty(text)) data.SetText(text);
@@ -430,8 +431,7 @@ namespace unvell.ReoGrid
 
             if (!cancelPerformPaste)
             {
-              DoAction(new SetPartialGridAction(new RangePosition(
-                startRow, startCol, rows, cols), partialGrid));
+              DoAction(this.Workbook.DataActionFactory.SetPartialGridAction(targetRange, partialGrid));
             }
 
             #endregion // Partial Grid Pasting
@@ -456,7 +456,7 @@ namespace unvell.ReoGrid
 
               if (actionSupportedControl != null)
               {
-                actionSupportedControl.DoAction(this, new SetRangeDataAction(targetRange, arrayData));
+                actionSupportedControl.DoAction(this, this.Workbook.DataActionFactory.SetRangeDataAction(targetRange, arrayData));
               }
             }
             #endregion // Plain Text Pasting
@@ -563,7 +563,7 @@ namespace unvell.ReoGrid
 
           if (byAction)
           {
-            DoAction(new CutRangeAction(range, partialGrid));
+            DoAction(this.Workbook.DataActionFactory.CutRangeAction(range, partialGrid));
           }
           else
           {

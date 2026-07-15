@@ -24,7 +24,7 @@ namespace unvell.ReoGrid.Actions
 	/// </summary>
 	public class SetPartialGridAction : WorksheetReusableAction
 	{
-		private PartialGrid data;
+		protected PartialGrid data;
 		private PartialGrid backupData;
 
 		/// <summary>
