@@ -221,7 +221,7 @@ namespace unvell.ReoGrid
 #if WINFORM || WPF
           DataObject data = new DataObject();
           data.SetData(ClipBoardDataFormatIdentify, this.Workbook.PartialGridFactory.
-            GetPartialGrid(this, currentCopingRange, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None, true)
+            GetPartialGrid_ForCopyAction(this, currentCopingRange, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None, true)
           );
 
           string text = StringifyRange(currentCopingRange);
