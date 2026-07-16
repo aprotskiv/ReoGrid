@@ -5,6 +5,12 @@ namespace unvell.ReoGrid
 {
   public interface IDataActionFactory
   {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="range"></param>
+    /// <param name="partialGrid"></param>
+    /// <returns></returns>
     CutRangeAction CutRangeAction(RangePosition range, PartialGrid partialGrid);
 
     /// <summary>
@@ -25,8 +31,21 @@ namespace unvell.ReoGrid
     /// Create action to set data into specified range of spreadsheet.
     /// </summary>
     /// <param name="range">range to set specified data.</param>
-    /// <param name="data">data to be set.</param>
-    WorksheetReusableAction SetRangeDataAction(RangePosition range, object[,] data);
+    /// <param name="matrix">object[,] to be set.</param>
+    WorksheetReusableAction SetRangeDataAction(RangePosition range, SetRangeDataActionContext matrix);
+  }
+
+  public sealed class SetRangeDataActionContext
+  {
+    public SetRangeDataActionContext(object[,] arrayData)
+    {
+      this.Data = arrayData;
+    }
+
+    /// <summary>
+    /// data to be set
+    /// </summary>
+    public object[,] Data { get; }
   }
 
   /// <summary>
@@ -53,9 +72,9 @@ namespace unvell.ReoGrid
     }
     
     /// <inheritdoc/>
-    public WorksheetReusableAction SetRangeDataAction(RangePosition range, object[,] data)
+    public WorksheetReusableAction SetRangeDataAction(RangePosition range, SetRangeDataActionContext data)
     {
-      return new SetRangeDataAction(range, data);
+      return new SetRangeDataAction(range, data.Data);
     }
   }
 }
