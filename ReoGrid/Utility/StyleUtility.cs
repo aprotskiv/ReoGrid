@@ -575,7 +575,7 @@ namespace unvell.ReoGrid.Utility
 			{
 				switch (cell.InnerStyle.HAlign)
 				{
-					case ReoGridHorAlign.Left:
+          case ReoGridHorAlign.Left:
 						cell.RenderHorAlign = ReoGridRenderHorAlign.Left;
 						break;
 					case ReoGridHorAlign.Center:
@@ -584,6 +584,10 @@ namespace unvell.ReoGrid.Utility
 					case ReoGridHorAlign.Right:
 						cell.RenderHorAlign = ReoGridRenderHorAlign.Right;
 						break;
+          
+          default:
+            cell.RenderHorAlign = default(ReoGridRenderHorAlign);
+            break;
 				}
 			}
 		}

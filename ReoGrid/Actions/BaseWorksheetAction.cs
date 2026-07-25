@@ -32,7 +32,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action.
 		/// </summary>
-		public abstract void Do();
+		public abstract bool Do();
 
 		/// <summary>
 		/// Undo this action.

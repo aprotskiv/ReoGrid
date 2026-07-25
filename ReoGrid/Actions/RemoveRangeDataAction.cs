@@ -59,11 +59,13 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do action to remove data from specified range.
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			this.backupData = Worksheet.GetRangeData(base.Range);
 			this.Worksheet.DeleteRangeData(this.Range, true);
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo action to restore removed data.

@@ -46,9 +46,10 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action to insert worksheet
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			this.Workbook.InsertWorksheet(this.Index, this.Worksheet);
+      return true;
 		}
 
 		/// <summary>

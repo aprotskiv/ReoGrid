@@ -46,7 +46,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			int row = Range.Row;
 			int count = Range.Rows;
@@ -70,7 +70,9 @@ namespace unvell.ReoGrid.Actions
 			}
 
 			Worksheet.SetRowsHeight(row, count, height);
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo this action

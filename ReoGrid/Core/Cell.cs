@@ -166,7 +166,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		/// <param name="cell">Instance of cell.</param>
 		/// <param name="data">Data to be set.</param>
-		internal void SetSingleCellData(Cell cell, object data)
+		public void SetSingleCellData(Cell cell, object data)
 		{
 			// set cell body
 			if (data is ICellBody)
@@ -691,13 +691,13 @@ namespace unvell.ReoGrid
 
 		internal CellPosition InternalPos;
 
-		internal int InternalRow
+    public int InternalRow
 		{
 			get { return this.InternalPos.Row; }
 			set { this.InternalPos.Row = value; }
 		}
 
-		internal int InternalCol
+		public int InternalCol
 		{
 			get { return this.InternalPos.Col; }
 			set { this.InternalPos.Col = value; }
@@ -747,14 +747,14 @@ namespace unvell.ReoGrid
 
 #region Rowspan & Colspan
 		private short colspan;
-		internal short Colspan
+    public short Colspan
 		{
 			get { return colspan; }
 			set { colspan = value; }
 		}
 
 		private short rowspan;
-		internal short Rowspan
+		public short Rowspan
 		{
 			get { return rowspan; }
 			set { rowspan = value; }
@@ -852,7 +852,7 @@ namespace unvell.ReoGrid
 		/// <summary>
 		/// cell data
 		/// </summary>
-		internal object InnerData { get; set; }
+		public object InnerData { get; set; }
 
 		/// <summary>
 		/// Get or set cell data
@@ -887,7 +887,7 @@ namespace unvell.ReoGrid
 		/// <summary>
 		/// cell formula
 		/// </summary>
-		internal string InnerFormula { get; set; }
+		public string InnerFormula { get; set; }
 #if FORMULA
 
 		internal FormulaStatus formulaStatus;

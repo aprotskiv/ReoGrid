@@ -52,14 +52,14 @@ namespace unvell.ReoGrid.Actions
 			set { data = value; }
 		}
 
-		private object backupData;
-		//private string backupFormula;
-		//private string displayBackup;
-		private CellDataFormatFlag backupDataFormat;
-		private object backupDataFormatArgs;
+    protected object backupData;
+    //private string backupFormula;
+    //private string displayBackup;
+    protected CellDataFormatFlag backupDataFormat;
+    protected object backupDataFormatArgs;
 		//private Core.ReoGridRenderHorAlign backupRenderAlign;
 		//private bool autoUpdateReferenceCells = false;
-		private ushort? backupRowHeight = 0;
+		protected ushort? backupRowHeight = 0;
 
 		/// <summary>
 		/// Create SetCellValueAction with specified index of row and column.
@@ -74,12 +74,12 @@ namespace unvell.ReoGrid.Actions
 			this.data = data;
 		}
 
-		/// <summary>
-		/// Create SetCellValueAction with specified index of row and column.
-		/// </summary>
-		/// <param name="pos">position to locate the cell to be set.</param>
-		/// <param name="data">data to be set.</param>
-		public SetCellDataAction(CellPosition pos, object data)
+    /// <summary>
+    /// Create SetCellValueAction with specified index of row and column.
+    /// </summary>
+    /// <param name="pos">position to locate the cell to be set.</param>
+    /// <param name="data">data to be set.</param>
+    private SetCellDataAction(CellPosition pos, object data)
 			: this(pos.Row, pos.Col, data)
 		{
 		}
@@ -89,7 +89,7 @@ namespace unvell.ReoGrid.Actions
 		/// </summary>
 		/// <param name="address">address to locate specified cell.</param>
 		/// <param name="data">data to be set.</param>
-		public SetCellDataAction(string address, object data)
+		private SetCellDataAction(string address, object data)
 		{
 			CellPosition pos = new CellPosition(address);
 			this.row = pos.Row;
@@ -100,7 +100,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this operation.
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			Cell cell = Worksheet.CreateAndGetCell(row, col);
 
@@ -125,12 +125,15 @@ namespace unvell.ReoGrid.Actions
 				{
 					cell.ExpandRowHeight();
 				}
-			}
+
+        return true;
+      }
 			catch (Exception ex)
 			{
 				this.Worksheet.NotifyExceptionHappen(ex);
-			}
 
+        return false;
+      }
 		}
 
 		public override void Redo()

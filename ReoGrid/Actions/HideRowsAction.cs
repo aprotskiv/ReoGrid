@@ -33,10 +33,11 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do action to hide specified rows.
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			this.Worksheet.HideRows(base.Range.Row, base.Range.Rows);
-		}
+      return true;
+    }
 
 		/// <summary>
 		/// Undo action to show hidden rows.

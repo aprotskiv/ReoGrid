@@ -59,12 +59,12 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			if (Range.Rows == -1)
 			{
 				Logger.Log("remove rows", "attempt to remove all columns but grid must have one column, operation aborted.");
-				return;
+				return false;
 			}
 
 			backupHeights = new int[Range.Rows];
@@ -78,7 +78,9 @@ namespace unvell.ReoGrid.Actions
 			backupData = Worksheet.GetPartialGrid(Range);
 			Debug.Assert(backupData != null);
 			Worksheet.DeleteRows(Range.Row, Range.Rows, this);
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo this action

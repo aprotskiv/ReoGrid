@@ -38,13 +38,16 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			if (this.Worksheet != null)
 			{
 				this.Worksheet.AddOutline(this.rowOrColumn, start, count);
+        return true;
 			}
-		}
+
+      return false;
+    }
 
 		/// <summary>
 		/// Undo this action

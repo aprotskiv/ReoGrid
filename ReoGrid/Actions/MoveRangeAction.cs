@@ -54,7 +54,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action.
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			var targetRange = new RangePosition(
 				this.ToPosition.Row, this.ToPosition.Col,
@@ -65,7 +65,9 @@ namespace unvell.ReoGrid.Actions
 			this.Worksheet.MoveRange(this.FromRange, targetRange);
 
 			this.Worksheet.SelectionRange = targetRange;
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo this action.

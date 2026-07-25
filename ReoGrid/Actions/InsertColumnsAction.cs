@@ -50,12 +50,13 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			insertedCol = Column;
 			Worksheet.InsertColumns(Column, Count);
 			Range = new RangePosition(0, Column, Worksheet.RowCount, Count);
-		}
+      return true;
+    }
 
 		/// <summary>
 		/// Undo this action

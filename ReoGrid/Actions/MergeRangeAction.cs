@@ -43,12 +43,13 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this operation.
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			// todo
 			backupData = Worksheet.GetPartialGrid(Range, PartialGridCopyFlag.All, ExPartialGridCopyFlag.None);
 			Worksheet.MergeRange(Range);
-		}
+      return true;
+    }
 
 		/// <summary>
 		/// Undo this operation.

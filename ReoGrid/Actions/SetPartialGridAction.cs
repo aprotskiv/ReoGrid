@@ -46,13 +46,15 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do action to set partial grid.
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			backupData = Worksheet.GetPartialGrid(base.Range, PartialGridCopyFlag.All, ExPartialGridCopyFlag.BorderOutsideOwner);
 			Debug.Assert(backupData != null);
 			base.Range = base.Worksheet.SetPartialGridRepeatly(base.Range, data);
 			Worksheet.SelectRange(base.Range);
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo action to restore setting partial grid.

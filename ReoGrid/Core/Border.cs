@@ -35,7 +35,7 @@ using VBorderArray = unvell.ReoGrid.Data.ReoGridVBorderArray;
 namespace unvell.ReoGrid.Core
 {
 	[Serializable]
-	internal class ReoGridHBorder : BaseBorder
+	public class ReoGridHBorder : BaseBorder
 	{
 
 		private HBorderOwnerPosition pos;
@@ -58,7 +58,7 @@ namespace unvell.ReoGrid.Core
 	}
 
 	[Serializable]
-	internal class ReoGridVBorder : BaseBorder
+	public class ReoGridVBorder : BaseBorder
 	{
 		private VBorderOwnerPosition pos;
 
@@ -98,7 +98,7 @@ namespace unvell.ReoGrid.Core
 	}
 
 	[Serializable]
-	internal abstract class BaseBorder
+	public abstract class BaseBorder
 	{
 		public int Span { get; set; }
 

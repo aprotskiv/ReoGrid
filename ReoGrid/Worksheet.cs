@@ -2066,7 +2066,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		public event EventHandler Resetted;
 
-		internal void NotifyExceptionHappen(Exception ex)
+		public void NotifyExceptionHappen(Exception ex)
 		{
 			if (this.workbook != null)
 			{
@@ -2080,7 +2080,7 @@ namespace unvell.ReoGrid
 		internal WorksheetSettings settings;
 
 		//[DefaultValue(WorksheetSettings.Default)]
-		//internal WorksheetSettings Settings { get { return settings; } set { this.settings = value; } }
+		public WorksheetSettings Settings { get { return settings; } /* set { this.settings = value; } */ }
 
 		/// <summary>
 		/// Enable control settings

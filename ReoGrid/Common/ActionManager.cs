@@ -87,7 +87,11 @@ namespace unvell.Common
 				if (arg.Cancel) return;
 			}
 
-			if (perform) action.Do();
+      if (perform)
+      {
+        isCanUndo = action.Do();
+      }
+      
 
 			if (action is IUndoableAction && isCanUndo)
 			{
@@ -258,10 +262,11 @@ namespace unvell.Common
 	/// </summary>
 	public interface IAction
 	{
-		/// <summary>
-		/// Do this action.
-		/// </summary>
-		void Do();
+    /// <summary>
+    /// Do this action.
+    /// </summary>
+    /// <returns>TRUE if performed action can be undone (can be reversed)</returns>
+    bool Do();
 
 		/// <summary>
 		/// Get the friendly name of this action.
@@ -339,12 +344,15 @@ namespace unvell.Common
 		/// <summary>
 		/// Do this action group. (Do all actions that are contained in this group)
 		/// </summary>
-		public virtual void Do()
+		public virtual bool Do()
 		{
 			foreach (IAction action in actions)
 			{
-				action.Do();
-			}
+				var isCanUndo = action.Do();
+        // TODO: modify undo / redo stacks
+      }
+
+      return true;
 		}
 
 		/// <summary>

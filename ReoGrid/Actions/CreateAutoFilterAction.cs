@@ -73,7 +73,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do action to create column filter
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			if (this.autoColumnFilter == null)
 			{
@@ -84,7 +84,9 @@ namespace unvell.ReoGrid.Actions
 			{
 				this.autoColumnFilter.Attach(base.Worksheet);
 			}
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Get friendly name of this action

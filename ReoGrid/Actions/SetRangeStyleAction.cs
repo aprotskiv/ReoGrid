@@ -85,7 +85,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do this action
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			backupData = Worksheet.GetPartialGrid(Range);
 
@@ -149,7 +149,9 @@ namespace unvell.ReoGrid.Actions
 			}
 
 			Worksheet.SetRangeStyles(affectedRange, style);
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo this action

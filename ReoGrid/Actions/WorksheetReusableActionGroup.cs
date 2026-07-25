@@ -63,7 +63,7 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do all actions stored in this action group
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			if (first)
 			{
@@ -76,7 +76,9 @@ namespace unvell.ReoGrid.Actions
 			{
 				actions[i].Do();
 			}
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Undo all actions stored in this action group

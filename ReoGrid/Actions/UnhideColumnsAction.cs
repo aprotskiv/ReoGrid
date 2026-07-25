@@ -33,10 +33,12 @@ namespace unvell.ReoGrid.Actions
 		/// <summary>
 		/// Do action to show hidden columns
 		/// </summary>
-		public override void Do()
+		public override bool Do()
 		{
 			this.Worksheet.ShowColumns(base.Range.Col, base.Range.Cols);
-		}
+
+      return true;
+    }
 
 		/// <summary>
 		/// Do action to hide specified visible columns
