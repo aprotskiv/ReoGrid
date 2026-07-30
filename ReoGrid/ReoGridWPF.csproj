@@ -46,13 +46,13 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFDebug|AnyCPU' OR '$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFDebug|AnyCPU' OR '$(Configuration)|$(Platform)'=='Debug|AnyCPU' OR '$(Configuration)|$(Platform)'=='Debug_VLC_off|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;WPF;VP_DEBUG_OFF;ALWAYS_CELL_CLIP;FORMULA;LANG_JP;OUTLINE;DRAWING;COMMENT;PRINT;RICHTEXT;</DefineConstants>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFRelease|AnyCPU' OR '$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WPFRelease|AnyCPU' OR '$(Configuration)|$(Platform)'=='Release|AnyCPU' OR '$(Configuration)|$(Platform)'=='Release_VLC_off|AnyCPU'">
     <DefineConstants>TRACE;WPF;FORMULA;LANG_JP;OUTLINE;DRAWING;PRINT;RICHTEXT;</DefineConstants>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
