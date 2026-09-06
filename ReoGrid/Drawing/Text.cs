@@ -1,4 +1,4 @@
-﻿/*****************************************************************************
+/*****************************************************************************
  * 
  * ReoGrid - .NET Spreadsheet Control
  * 
@@ -479,13 +479,16 @@ namespace unvell.ReoGrid.Drawing
 #if WINFORM || ANDROID
 						g.PlatformGraphics.DrawString(b.Str, b.FontInfo.Font, lastBrush, tx, ty, this.sf);
 #elif WPF
-						var gr = new System.Windows.Media.GlyphRun(b.FontInfo.GlyphTypeface, 0, false, r.FontSize * 1.33d,
-							new ushort[] { b.GlyphIndex },
-							new System.Windows.Point(tx, ty),
-							new double[] { b.Width }, null, null, null, null,
-							null, null);
+						if (b.FontInfo.GlyphTypeface != null)
+						{
+							var gr = new System.Windows.Media.GlyphRun(b.FontInfo.GlyphTypeface, 0, false, r.FontSize * 1.33d,
+								new ushort[] { b.GlyphIndex },
+								new System.Windows.Point(tx, ty),
+								new double[] { b.Width }, null, null, null, null,
+								null, null);
 
-						g.PlatformGraphics.DrawGlyphRun(lastBrush, gr);
+							g.PlatformGraphics.DrawGlyphRun(lastBrush, gr);
+						}
 #endif // WPF
 					}
 				}
@@ -1101,15 +1104,26 @@ namespace unvell.ReoGrid.Drawing.Text
 					fontInfo.LineHeight = font.Size * lineSpacing / emHeight;
 
 #elif WPF
+					var style = PlatformUtility.ToWPFFontStyle(this.fontStyles);
+					var weight = (this.fontStyles & FontStyles.Bold) == FontStyles.Bold ?
+						System.Windows.FontWeights.Bold : System.Windows.FontWeights.Normal;
+					var stretch = System.Windows.FontStretches.Normal;
+
 					var typeface = new System.Windows.Media.Typeface(
 						new System.Windows.Media.FontFamily(this.fontName),
-						PlatformUtility.ToWPFFontStyle(this.fontStyles),
-						(this.fontStyles & FontStyles.Bold) == FontStyles.Bold ?
-						System.Windows.FontWeights.Bold : System.Windows.FontWeights.Normal,
-						System.Windows.FontStretches.Normal);
+						style, weight, stretch);
 
 					System.Windows.Media.GlyphTypeface glyphTypeface;
-					typeface.TryGetGlyphTypeface(out glyphTypeface);
+					if (!typeface.TryGetGlyphTypeface(out glyphTypeface))
+					{
+						var defaultTypeface = new System.Windows.Media.Typeface(
+							new System.Windows.Media.FontFamily("Arial"),
+							style, weight, stretch);
+						if (defaultTypeface.TryGetGlyphTypeface(out glyphTypeface))
+						{
+							typeface = defaultTypeface;
+						}
+					}
 
 					this.fontInfo.Typeface = typeface;
 					this.fontInfo.GlyphTypeface = glyphTypeface;
@@ -1212,24 +1226,25 @@ namespace unvell.ReoGrid.Drawing.Text
 			for (int n = 0; n < text.Length; n++)
 			{
 				char ch = text[n];
+				ushort glyphIndex = 0;
 
-				if (glyphTypeface.CharacterToGlyphMap.TryGetValue(ch, out var glyphIndex))
+				if (glyphTypeface != null)
 				{
-					GlyphIndexes.Add(glyphIndex);
+					glyphTypeface.CharacterToGlyphMap.TryGetValue(ch, out glyphIndex);
 				}
-				else
-				{
-					// current typeface doesn't contains the character, try find another
-					var (otherTypeface, otherGlyphTypeface) = PlatformUtility.FindTypefaceContainsCharacter(ch);
-					if (otherGlyphTypeface != null)
-					{
-						glyphTypeface = otherGlyphTypeface;
-						GlyphIndexes.Add(otherGlyphTypeface.CharacterToGlyphMap[ch]);
-                    }
-                }
 
-				double width = glyphTypeface.AdvanceWidths[glyphIndex] * size;
-				this.TextSizes.Add(width);
+				this.GlyphIndexes.Add(glyphIndex);
+
+				double advanceWidth = 0;
+				if (glyphTypeface != null)
+				{
+					if (!glyphTypeface.AdvanceWidths.TryGetValue(glyphIndex, out advanceWidth))
+					{
+						glyphTypeface.AdvanceWidths.TryGetValue(0, out advanceWidth);
+					}
+				}
+
+				this.TextSizes.Add(advanceWidth * size);
 			}
 
 #endif // WINFORM

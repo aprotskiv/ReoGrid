@@ -53,6 +53,17 @@
 
 ---
 
+## ReoGrid for the web & cloud
+
+ReoGrid isn't only for the desktop — the same Excel-like engine now runs in the browser:
+
+- **[ReoGrid Web](https://web.reogrid.net)** — a fast, canvas-based spreadsheet **component for React, Vue, and vanilla JavaScript**: xlsx import/export, formulas, styles, and conditional formatting, all in the browser. Free [Lite tier](https://web.reogrid.net/pricing) — try the [live demos](https://web.reogrid.net/demos) or the [free online XLSX viewer](https://web.reogrid.net/xlsx-viewer).
+- **[ReoGrid Studio](https://studio.reogrid.net)** — a free, browser-hosted spreadsheet with a public **MCP endpoint**. Author sheets in natural language, or let an AI agent publish a spreadsheet and hand back a shareable live URL — no install, no download.
+
+Moving a desktop tool to the web? See [From ReoGrid .NET to ReoGrid Web](https://web.reogrid.net/articles/reogrid-dotnet-to-web).
+
+---
+
 ## Features (V3 Community)
 
 - Excel (XLSX) import and export via OpenXML
@@ -183,5 +194,7 @@ See [LICENSE](LICENSE) for full text.
 ReoGrid is developed and maintained by **[UNVELL Inc.](https://reogrid.net/)**, a software company specializing in .NET UI components.
 
 - 🌐 Website: https://reogrid.net
+- 🧩 ReoGrid Web (JavaScript / React / Vue): https://web.reogrid.net
+- ☁️ ReoGrid Studio (online spreadsheet + MCP): https://studio.reogrid.net
 - 📧 Support: support@reogrid.net
 - 🇯🇵 Japanese page: https://reogrid.net/jp

@@ -56,6 +56,17 @@
 
 ---
 
+## Web・クラウドの ReoGrid
+
+ReoGrid はデスクトップだけではありません。同じ Excel ライクなエンジンが、いまブラウザでも動きます。
+
+- **[ReoGrid Web](https://web.reogrid.net/jp)** — **React・Vue・バニラ JavaScript 向け**の高速なキャンバスベース スプレッドシートコンポーネント。ブラウザでの xlsx 入出力・数式・スタイル・条件付き書式。無料の [Lite ティア](https://web.reogrid.net/jp/pricing)あり。[ライブデモ](https://web.reogrid.net/jp/demos)や[無料オンライン XLSX ビューア](https://web.reogrid.net/jp/xlsx-viewer)をどうぞ。
+- **[ReoGrid Studio](https://studio.reogrid.net)** — 公開 **MCP エンドポイント**を備えた、無料・ブラウザホスト型のスプレッドシート。自然言語でシートを作成、あるいは AI エージェントがスプレッドシートを公開し、共有可能なライブ URL を返します（インストール・ダウンロード不要）。
+
+デスクトップツールを Web へ移行するなら → [ReoGrid .NET から ReoGrid Web へ](https://web.reogrid.net/jp/articles/reogrid-dotnet-to-web)。
+
+---
+
 ## V3 コミュニティの機能
 
 - **Excel (XLSX) 入出力**（OpenXML 経由）
@@ -180,5 +191,7 @@ MIT ライセンス — Copyright (c) UNVELL Inc. 2012–2026, All rights reserv
 ReoGrid は、.NET UI コンポーネント専門のソフトウェア会社 **[UNVELL Inc.](https://reogrid.net/jp/)** が開発・メンテナンスしています。
 
 - 🌐 Webサイト：https://reogrid.net/jp
+- 🧩 ReoGrid Web（JavaScript / React / Vue）：https://web.reogrid.net/jp
+- ☁️ ReoGrid Studio（オンライン スプレッドシート＋MCP）：https://studio.reogrid.net
 - 📧 サポート：support@reogrid.net
 - 💬 日本語でのお問い合わせも承っております
